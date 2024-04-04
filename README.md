@@ -101,7 +101,9 @@ cd /home/jcleng/work/flutter_flatpak_example
 # build
 cd counter_app/
 /home/jcleng/work/flutter/flutter/bin/flutter pub get
-ninja-build cmake clang pkg-config libgtk-3-dev
+
+apt install -y ninja-build cmake clang pkg-config libgtk-3-dev
+
 /home/jcleng/work/flutter/flutter/bin/flutter build linux --release
 /home/jcleng/work/flutter/flutter/bin/flutter run -d linux --debug
 # bin dir
