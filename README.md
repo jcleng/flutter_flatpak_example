@@ -117,4 +117,6 @@ tar -czaf $archiveName ./*
 cd flathub_repo/
 flatpak-builder --repo=repo --user --install --force-clean build-dir com.example.FlutterApp.yml
 
+# 记得删除这个文件, docker和ide的不一致不能run
+counter_app/pubspec.lock
 ```
