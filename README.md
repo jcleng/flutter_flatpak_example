@@ -95,11 +95,15 @@ docker run -itd -v /home/jcleng/work/:/home/jcleng/work/ \
 -e DISPLAY=$DISPLAY \
 --ipc=host \
 --privileged \
+-u $(id -u):$(id -g) \
 --name=flutter flutter:latest
 
 cd /home/jcleng/work/flutter_flatpak_example
 # build
 cd counter_app/
+# 需要vscode插件 ms-vscode-remote.remote-containers 在容器安装 Dart-Code.flutter,内开发
+export PUB_HOSTED_URL=https://pub.flutter-io.cn
+export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 /home/jcleng/work/flutter/flutter/bin/flutter pub get
 
 apt install -y ninja-build cmake clang pkg-config libgtk-3-dev
@@ -117,6 +121,4 @@ tar -czaf $archiveName ./*
 cd flathub_repo/
 flatpak-builder --repo=repo --user --install --force-clean build-dir com.example.FlutterApp.yml
 
-# 记得删除这个文件, docker和ide的不一致不能run
-counter_app/pubspec.lock
 ```
